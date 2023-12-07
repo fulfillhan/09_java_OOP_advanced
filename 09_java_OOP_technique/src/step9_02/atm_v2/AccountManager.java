@@ -66,39 +66,35 @@ public class AccountManager {
 			
 			//삭제하고자 하는 인덱스를 찾기
 			for (int i = 0; i < tempAccCnt; i++) {
-				if (myAccNum.equals(um.userList[identifier].acc[i].accNumber)) {
+				if (userList[identifier].acc[i].accNumber.equals(myAccNum)) {
 					delIdx = i;
-					break;
+					return;
 				}
-				
 			}
 			if (delIdx == -1) {
 				System.out.println("[메시지] 계좌번호를 재확인 하세요.");
-				return;
+				
 			}
-			// -> 여기서부터 다시하기!!
 			else {
 				int j = 0;
 				for (int i = 0; i < tempAccCnt; i++) {
 					if (i != delIdx) { // 삭제하는 변수와 i 가 같지않다면 (중복체크)
-						um.userList[identifier].acc[i] = tempAccounts[j];
+						um.userList[identifier].acc[j] = tempAccounts[i];
 						j++;
 					}
 				}
-			}
+				tempAccCnt--;
+				tempAccounts = null;
+				delIdx = -1;
+				
+				System.out.println("[메시지] "+ um.getInstance().userList[identifier].id+ "님 탈퇴되었습니다.");
+				
+				FileManager.getInstance().save();
+				}
+    	   } 
 			
-			
-		
-			
-			}
-			
-			
-			
-			
-		}
-    	
-    	
-    }
+	}
+}
     
     
 

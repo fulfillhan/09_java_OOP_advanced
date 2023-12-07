@@ -60,7 +60,7 @@ public class ATM {
 			FileManager.getInstance().save();
 			
 		}else if (selectMenu == 2) {
-			//AccountManger.getInstance().removeAcc();
+			AccountManager.getInstance().removeAcc(identifier);
 		}
 		else if (selectMenu == 3) {
 			
