@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UserManager {
 	
-	Scanner scan = new Scanner(System.in);
+Scanner scan = new Scanner(System.in);
 	
 	//싱글턴 패턴으로 생성자 만들기
 	 private UserManager() {}
@@ -29,26 +29,12 @@ public class UserManager {
 				System.out.println();
 			}
 		}
-		// 아이디가 중복되는 지 확인하는 메서드
-		boolean checkId(String id) {
-			
-			boolean isDuple = false;
-			for (int i = 0; i < userCnt; i++) {
-				if (userList[i].id.equals(id)) {
-					isDuple = true;
-				}
-			}
-			return isDuple;
-		}
-		
-		
-		
+		//회원가입
 		void joinMember() {
-			//회원가입
 			
 			System.out.print("[회원가입] 아이디를 입력하세요 : ");
 			String id = scan.next();
-			System.out.println("[회원가입] 패스워드를 입력하세요 : ");
+			System.out.print("[회원가입] 패스워드를 입력하세요 : ");
 			String pw = scan.next();
 			
 			boolean isresult = checkId(id); // 중복결과 result 변수에 저장
@@ -80,10 +66,73 @@ public class UserManager {
 			System.out.println("[메시지] 회원 가입을 축하합니다.");
 			
 			//파일저장하기 FileManager 생성필요
-			
-			
-			
+			FileManager.getInstance().save();
 		}
+		//로그인
+		//로그인된 유저의 인덱스값 반환하는 메서드
+		int logUser() {
+			int identifier = -1;
+			
+			System.out.print("[로그인] 아이디를 입력하세요 : \n");
+			String id = scan.next();
+			System.out.print("[로그인]패스워드를 입력하세요 : \n");
+			String pw =scan.next();
+			
+			for (int i = 0; i <userCnt; i++) {
+				if (userList[i].id.equals(id)) {
+					identifier = i;
+				}
+			}
+			return identifier;
+		}
+		
+		// 아이디가 중복되는 지 확인하는 메서드
+		boolean checkId(String id) {
+			
+			boolean isDuple = false;
+			for (int i = 0; i < userCnt; i++) {
+				if (userList[i].id.equals(id)) {
+					isDuple = true;
+				}
+			}
+			return isDuple;
+		}
+		//계좌번호가 중복되는 지 확인하는 메서드
+		boolean getCheckAcc(String account) {
+			
+			boolean isDuple = false;
+			for (int i = 0; i < userCnt; i++) { // 유저순환
+				for (int j = 0; j < userList[i].accCnt; j++) {//해당 유저의 계좌 순환
+					if (userList[i].acc[j].accNumber.equals(account)) {
+						isDuple = true;
+					}
+				}
+			}
+			return isDuple;
+		}
+		 
+		//사용자 삭제하기 메소드 
+		int deleteMember(int delIdentifier) {
+			User[] temp = userList;
+			userList = new User[userCnt -1];
+			
+			int j = 0;
+			for (int i = 0; i < userCnt; i++) {
+				if (i != delIdentifier) {// i 인덱스가 삭제할 인덱스 값과 같지 않다면(true)
+					userList[j]= temp[i];
+					j++;
+				}
+			}
+			userCnt--;
+			temp = null;
+			System.out.println("[메시지]"+ UserManager.getInstance().userList[delIdentifier].id+ "님 탈퇴되었습니다.");
+			delIdentifier = -1;
+			
+			FileManager.getInstance().save();
+	
+			return delIdentifier;
+		}
+		
 		
 
 }
