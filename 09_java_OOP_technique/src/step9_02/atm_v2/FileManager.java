@@ -1,5 +1,9 @@
 package step9_02.atm_v2;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -50,7 +54,7 @@ public class FileManager {
 				}
 			}
 		}
-		//저장하기 메서드
+		//저장하기
 		void save() {
 			
 			setData();//setData 메서드 호출
@@ -65,5 +69,48 @@ public class FileManager {
 			}finally {
 				if (fw != null) {try {fw.close();} catch (IOException e) { e.printStackTrace();}}
 			}
+		}
+		//파일에서 데이터 복원하기
+		void load() {
+			File file = new File(fileName);
+			FileReader fr =null;
+			BufferedReader br = null;
+			
+			try {
+				if (file.exists()) {
+			 fr = new FileReader(file);
+			 br = new BufferedReader(fr);
+			 
+			 while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				}
+				//데이터 복원
+				data += line;
+				data += "\n";
+			}
+			 //복원된 데이터로부터 사용자 및 계좌정보 설정
+			 //읽어온 데이터를 개행문자를 기준으로 분할하여 배열에 저장한다.
+			 String[] temp = data.split("\n"); //반환 :  String타입의 배열
+			 um.userCnt = Integer.parseInt(temp[0]);// temp 첫번째 요소은 userCnt 저장
+			 um.userList = new User[um.userCnt]; //사용자 수에 맞게 user 배열을 생성.
+			 
+			 //사용자정보 가져와서 user객체 및 계좌 정보 복원
+			 //1.user 객체 복원
+			 for (int i = 0; i <um.userCnt; i++) {
+				um.userList[i] = new User();
+			}
+			 // -> 여기서부터 다시 보기!!
+			 int j = 0;
+			 
+
+			 
+				}
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
 		}
 }

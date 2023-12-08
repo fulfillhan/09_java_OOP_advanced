@@ -73,9 +73,9 @@ Scanner scan = new Scanner(System.in);
 		int logUser() {
 			int identifier = -1;
 			
-			System.out.print("[로그인] 아이디를 입력하세요 : \n");
+			System.out.print("[로그인] 아이디를 입력하세요 : ");
 			String id = scan.next();
-			System.out.print("[로그인]패스워드를 입력하세요 : \n");
+			System.out.print("[로그인]패스워드를 입력하세요 : ");
 			String pw =scan.next();
 			
 			for (int i = 0; i <userCnt; i++) {

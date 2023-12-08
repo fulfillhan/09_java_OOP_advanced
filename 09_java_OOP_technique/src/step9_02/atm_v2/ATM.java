@@ -63,10 +63,12 @@ public class ATM {
 			AccountManager.getInstance().removeAcc(identifier);
 		}
 		else if (selectMenu == 3) {
-			
+			AccountManager.getInstance().printAcc(identifier);
 		}
 		else if (selectMenu == 4) {
-			
+			// 회원탈퇴
+			um.deleteMember(identifier);
+			break;
 		}
 		else if (selectMenu == 0) {
 			identifier = -1;
