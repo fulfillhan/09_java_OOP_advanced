@@ -62,33 +62,21 @@ public class AccountManager {
 		}
     	else {
     		//계좌가 2개 이상일때
-    		
-				//삭제하고자 하는 인덱스를 찾기
+    		//삭제하고자 하는 인덱스를 찾기
     		int i = 0;
     		while (i < tempAccCnt) {
 				
     			if (um.userList[delIdentifier].acc[i].equals(myAccNum)) {
 					 delIdx = i;
-					 i++;
+					 
 				}
     			else {
 					System.out.println("[메시지] 계좌번호를 재확인 하세요.");
 					delIdx = -1;
+					}
 				}
+		
 			}
-    		
-//			for (int delIdx = 0; i < tempAccCnt; delIdx++) {
-//				if (um.userList[delIdentifier].acc[i].equals(myAccNum)) {// 만약에 삭제하는 계좌와 같은 요소가 있다면 -> 취소인덱스를 찾은거고 이게 아니면 요소저장
-//					delIdx = i;
-//				}
-//				else {
-//					delIdx = -1;
-//					System.out.println("[메시지] 계좌번호를 재확인 하세요.");
-//					return;
-//				}
-				
-
-				}
 			// 삭제할 계좌를 제외한 나머지 계좌를 담을 새로운 배열 생성.
 			Account[] temp = um.userList[delIdentifier].acc;
 			um.userList[delIdentifier].acc = new Account[tempAccCnt -1];

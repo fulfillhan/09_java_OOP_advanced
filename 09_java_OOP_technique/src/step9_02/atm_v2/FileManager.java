@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class FileManager {
 	
@@ -38,7 +39,7 @@ public class FileManager {
 				if (um.userList[i].accCnt == 0) {
 					data += "0\n";// 기존에 입력한 데이터는 나와야함
 				}
-				//회수가 1개 이상이라면
+				//계좌의 회수가 1개 이상이라면
 				else {
 					for (int j = 0; j < um.userList[i].accCnt; j++) {
 						data += um.userList[i].acc[j].accNumber;
@@ -91,6 +92,7 @@ public class FileManager {
 				data += "\n";
 			}
 			 //복원된 데이터로부터 사용자 및 계좌정보 설정
+			 
 			 //읽어온 데이터를 개행문자를 기준으로 분할하여 배열에 저장한다.
 			 String[] temp = data.split("\n"); //반환 :  String타입의 배열
 			 um.userCnt = Integer.parseInt(temp[0]);// temp 첫번째 요소은 userCnt 저장
@@ -101,16 +103,58 @@ public class FileManager {
 			 for (int i = 0; i <um.userCnt; i++) {
 				um.userList[i] = new User();
 			}
-			 // -> 여기서부터 다시 보기!!
-			 int j = 0;
-			 
-
-			 
-				}
-			} catch (Exception e) {
+			 int j = 0;  //um.userCnt 의 인덱스
+			 for (int i = 0; i < temp.length; i+=4) {  //temp배열에서 현재 처리중인 라인의 인덱스
 				
-				e.printStackTrace();
+				 String id = temp[i]; //id = temp[0],temp[3]
+				 String pw = temp[i+1];//pw = temp[1],temp[4]
+				 int accCnt = Integer.parseInt(temp[i+2]);//accCnt = temp[2],temp[5]
+				 
+				 um.userList[j].id = id;
+				 um.userList[j].pw = pw;
+				 um.userList[j].accCnt = accCnt;
+				 
+				 String accInfo = temp[i+3];  // 계좌 정보
+				 if (accCnt == 1) {
+					 String[] temp1 = accInfo.split("/");
+					 
+					 // 계좌와 돈 초기화
+					 String acc = temp1[0];
+					 int money = Integer.parseInt(temp[1]);
+					 
+					 um.userList[j].acc[0]= new Account(); // 특정 사용자의 첫번째 계정 초기화
+					 um.userList[j].acc[0].accNumber =  acc;
+					 um.userList[j].acc[0].money = money;
+				
+				}
+				 else if (accCnt > 1) {
+					String[] temp1 = accInfo.split(",");
+					
+					for (int k = 0; k < temp1.length; k++) {
+						String[] parse = temp[k].split("/");
+						String acc = parse[0];
+						int money = Integer.parseInt(parse[1]);
+						
+						um.userList[j].acc[k] = new Account();
+						um.userList[j].acc[k].accNumber = acc;
+						um.userList[j].acc[k].money = money;
+					}
+				}
+				 j++;
+				 
 			}
-			
+		}   //파일이 존재 하지 않다면
+				else {
+					setData();//데이터 설정메서드 호출
+					save();//저장하기 메서드 호출
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if (br != null) {try {br.close();} catch (IOException e) {}}
+				if (fr != null) {
+					try {fr.close();} catch (IOException e) {}}
+			}
 		}
 }
