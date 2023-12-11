@@ -55,23 +55,20 @@ public class AccountManager {
         int loginAccIdx = -1;
         User loginUser =um.userList[um.identifier];
 
-        //로그인한 유저의 계좌 갯수가 0보다 클때 -> 여기서부터 다시하기
+        //로그인한 유저의 계좌 갯수가 0보다 클때 
         if (loginUser.accCnt > 0){
             for (int i = 0; i < loginUser.accCnt; i++) {
                 System.out.println("[" + (i+1) + "]" + loginUser.accList[i].number);
             }
             System.out.println("[" + msg + "]내 계좌를 메뉴에서 선택하세요 : ");
-            
-         //   loginAccIdx =ATM.scan.nextInt();
+            loginAccIdx =scan.nextInt();
             loginAccIdx--;
-        }
-        return loginAccIdx;
-        }
+        	}
+        	return loginAccIdx;
+        }	
         void deleteAcc(){
 
-
-
-            System.out.print("삭제할 계좌 번호를 입력하세요 : ");
+        	System.out.print("삭제할 계좌 번호를 입력하세요 : ");
             String delAccNum = scan.next();
         }
 
