@@ -67,8 +67,8 @@ public class ATM {
 		}
 		else if (selectMenu == 4) {
 			// 회원탈퇴
-			um.deleteMember(identifier);
-			break;
+			um.delMemeber(identifier);
+			return;
 		}
 		else if (selectMenu == 0) {
 			identifier = -1;

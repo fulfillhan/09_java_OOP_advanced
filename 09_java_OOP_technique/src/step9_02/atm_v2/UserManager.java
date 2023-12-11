@@ -8,12 +8,12 @@ Scanner scan = new Scanner(System.in);
 	
 	//싱글턴 패턴으로 생성자 만들기
 	 private UserManager() {}
-	 static private UserManager instance = new UserManager();
-	 static public UserManager getInstance() {
+	  private static UserManager instance = new UserManager();
+	  public static UserManager getInstance() {
 		 return instance;
 	}
 	 
-	 final int ACC_MAX_CNT = 3;			// 최대 개설 가능한 계좌 수
+	 final int ACC_MAX_CNT = 3;			// 최대 개설 가능한 계좌 수(변경할 수 없는 상수값)
 		User[] userList = null;				// 전체 회원정보
 		int userCnt = 0;					// 전체 회원 수
 		
@@ -112,26 +112,27 @@ Scanner scan = new Scanner(System.in);
 		}
 		 
 		//사용자 삭제하기 메소드 
-		int deleteMember(int delIdentifier) {
-			User[] temp = userList;
-			userList = new User[userCnt -1];
-			
-			int j = 0;
-			for (int i = 0; i < userCnt; i++) {
-				if (i != delIdentifier) {// i 인덱스가 삭제할 인덱스 값과 같지 않다면(true)
-					userList[j]= temp[i];
-					j++;
-				}
-			}
-			userCnt--;
-			temp = null;
-			System.out.println("[메시지]"+ UserManager.getInstance().userList[delIdentifier].id+ "님 탈퇴되었습니다.");
-			delIdentifier = -1;
-			
-			FileManager.getInstance().save();
-	
-			return delIdentifier;
-		}
+		int delMemeber(int identifier){
+	        User[] temp = userList;
+	        userList = new User[userCnt -1];
+
+	        int j = 0;
+	        for (int i = 0; i < userCnt; i++) {
+	            if (i != identifier){
+	               userList[j] = temp[i];
+	               j++;
+	            }
+	        }
+	        userCnt--;
+	        temp = null;
+	        identifier = -1;
+
+	        System.out.println("[메시지] 회원 탈퇴되었습니다.");
+
+	        //파일메니저 저장하기
+
+	        return identifier;
+	    }
 		
 		
 
