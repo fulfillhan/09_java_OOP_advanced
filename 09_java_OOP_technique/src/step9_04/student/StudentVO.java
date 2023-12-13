@@ -1,6 +1,6 @@
 package step9_04.student;
 
-public class StudentVO {
+public class StudentVO { //value object : 객체 모음.
 	
 	private String id;
 	private int num;

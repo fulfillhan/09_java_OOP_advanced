@@ -105,7 +105,7 @@ public class AccountManager {
 		System.out.println("ID : " + temp.id);
 		System.out.println("=========================");
 		for (int i = 0; i < temp.accCnt; i++) {
-			System.out.println("계좌 번호 : " + temp.acc[i].accNumber + " / " + temp.acc[i].money);
+			System.out.println("accNumber:" + temp.acc[i].accNumber + " /  money: " + temp.acc[i].money);
 		}
 		System.out.println("=========================\n");
 	}

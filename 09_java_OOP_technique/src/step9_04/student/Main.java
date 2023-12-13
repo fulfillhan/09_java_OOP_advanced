@@ -8,6 +8,7 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		Controller controller = new Controller();	
 			
+		 System.out.println("< ATM4 >");
 		while (true) {
 			
 			System.out.print("[1]추가 [2]수정 [3]삭제 [4]출력 [5]전체출력 [6]종료 : ");

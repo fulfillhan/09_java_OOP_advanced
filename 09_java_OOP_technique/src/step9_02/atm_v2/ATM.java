@@ -24,7 +24,8 @@ public class ATM {
 			else if (sel == 2) {
 				login();
 			}
-			else if (sel == 3) {
+			else if (sel == 0) {
+				System.out.println("시스템 종료");
 				break;
 			}
 		}
