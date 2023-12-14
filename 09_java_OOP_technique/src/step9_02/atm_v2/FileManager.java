@@ -95,7 +95,7 @@ public class FileManager {
 			 
 			 //읽어온 데이터를 개행문자를 기준으로 분할하여 배열에 저장한다.
 			 String[] temp = data.split("\n"); //반환 :  String타입의 배열
-			 um.userCnt = Integer.parseInt(temp[0]);// temp 첫번째 요소은 userCnt 저장
+			 um.userCnt = Integer.parseInt(temp[0]);// temp 첫번째 요소는 userCnt 저장
 			 um.userList = new User[um.userCnt]; //사용자 수에 맞게 user 배열을 생성.
 			 
 			 //사용자정보 가져와서 user객체 및 계좌 정보 복원
