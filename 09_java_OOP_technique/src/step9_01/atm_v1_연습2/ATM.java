@@ -1,6 +1,7 @@
 package step9_01.atm_v1_연습2;
 
-//2023-12-18 계좌 삭제부분 정답예시와 다른 부분으로 수정함.
+//2023-12-18 계좌 삭제부분 정답예시와 다르게 코딩함.
+
 import java.util.Random;
 import java.util.Scanner;
 

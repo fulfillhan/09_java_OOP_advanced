@@ -37,6 +37,11 @@ public class Main {
 				 *    이름과 번호를 변경할 수 있는 기능
 				 * 
 				 * */
+				
+				System.out.print("아이디를 입력하세요 : ");
+				String id = scan.next();
+				
+				
 			}
 			else if (selectMenu == 3) {
 				/*
