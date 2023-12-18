@@ -130,10 +130,30 @@ Scanner scan = new Scanner(System.in);
 	        System.out.println("[메시지] 회원 탈퇴되었습니다.");
 
 	        //파일메니저 저장하기
+	        FileManager.getInstance().save();
 
 	        return identifier;
 	    }
+		void setDummy() {
+			
+			String[] ids  = {"user1"  ,  "user2",     "user3",    "user4",    "user5"};
+			String[] pws  = {"1111"   ,   "2222",      "3333",     "4444",    "5555"};
+			String[] accs = {"1234567",  "2345692",  "1078912",   "2489123",  "7391234"};
+			int[] moneys  = { 87000   ,     12000,    49000,        34000,     128000};
+			
+			userCnt = 5;
+			userList = new User[userCnt];
+			
+			for (int i = 0; i < userCnt; i++) {
+				userList[i] = new User();
+				userList[i].id = ids[i];
+				userList[i].pw = pws[i];
+				userList[i].acc[0] = new Account();
+				userList[i].acc[0].accNumber = accs[i];
+				userList[i].acc[0].money = moneys[i];
+				userList[i].accCnt++;
+			}
 		
-		
+		}
 
 }

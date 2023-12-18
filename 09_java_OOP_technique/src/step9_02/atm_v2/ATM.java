@@ -10,6 +10,7 @@ public class ATM {
 	void play() {
 		
 		UserManager.getInstance().printAllUser();
+		FileManager.getInstance().load();//파일에서 데이터 복원하기 메서드 호출
 		
 		while (true) {
 			
@@ -25,7 +26,7 @@ public class ATM {
 				login();
 			}
 			else if (sel == 0) {
-				System.out.println("시스템 종료");
+				System.out.println("==시스템 종료==");
 				break;
 			}
 		}
@@ -69,7 +70,7 @@ public class ATM {
 		else if (selectMenu == 4) {
 			// 회원탈퇴
 			um.delMemeber(identifier);
-			return;
+			break;
 		}
 		else if (selectMenu == 0) {
 			identifier = -1;

@@ -90,37 +90,36 @@ public class UserManager {
 		
 	}
 	
-	
 	void leave() {
-		
+
 		System.out.print("[입력] 탈퇴할 아이디를 입력하세요 : ");
 		String name = scan.next();
 		int identifier = -1;
 		for (int i = 0; i < userCount; i++) {
 			if (name.equals(user[i].id)) {
-				identifier = i;			
+				identifier = i;
 			}
 		}
-		
-		if(identifier == -1) {
+
+		if (identifier == -1) {
 			System.out.println("[메시지] 아이디를 다시 확인하세요.");
 			return;
 		}
-		
-		System.out.println("ID : '" +user[identifier].id + "' 가 탈퇴되었습니다.");
-		
+
+		System.out.println("ID : '" + user[identifier].id + "' 가 탈퇴되었습니다.");
+
 		User[] temp = user;
 		user = new User[userCount - 1];
-		
-		for(int i = 0; i < identifier; i++) {
+
+		for (int i = 0; i < identifier; i++) {
 			user[i] = temp[i];
 		}
-		for(int i =identifier; i < userCount-1; i++) {
-			user[i] =temp[i + 1];
+		for (int i = identifier; i < userCount - 1; i++) {
+			user[i] = temp[i + 1];
 		}
-		
+
 		userCount--;
-		
+
 	}
-	
+
 }

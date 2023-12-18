@@ -7,9 +7,10 @@ public class Controller {
 	private StudentSelect select;	
 	private StudentSelectAll selectAll;
 	
-	public Controller() {
-		stDAO = new StudentDAO();	
-		insert = new StudentInsert(stDAO);
+	public Controller() { // 기본 생성자로 하고
+		//각각의 맴버 변수 초기화 
+		stDAO = new StudentDAO();// StudentDAO객체를 stDAO할당하고
+		insert = new StudentInsert(stDAO);//이를 이용해서 각 객체들을 생성하여 생성자에게 전달
 		select = new StudentSelect(stDAO);
 		selectAll = new StudentSelectAll(stDAO);
 	}

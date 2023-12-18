@@ -22,27 +22,22 @@ public class AccountManager {
 	// 계좌 생성의 메서드
 	void createAcc(int identifier) {
 
-		// 사용자가 가지고 있는 계좌 갯수를 accCntBYUser변수에 저장한다.
 		int accCntByUser = um.userList[identifier].accCnt;
 
-		// 최대 갯수를 초과한경우
-		if (accCntByUser > um.ACC_MAX_CNT) {
+		if (accCntByUser == um.ACC_MAX_CNT) {
 			System.out.println("[메세지]계좌개설은 3개까지만 가능합니다.");
 			return;
 		}
 
+		um.userList[identifier].acc[accCntByUser] = new Account();
+
 		String makeAccount = "";
-
 		while (true) {
-
-			makeAccount = Integer.toString(ran.nextInt(900001) + 10000);
-			// 계좌번호 중복 체크
+			makeAccount = ran.nextInt(9000000) + 1000001 + "";
 			if (!um.getCheckAcc(makeAccount)) {
 				break;
 			}
 		}
-		// 사용자의 계좌목록에 새로 생성된 계좌 번호 저장.
-		um.userList[identifier].acc[accCntByUser] = new Account();
 		um.userList[identifier].acc[accCntByUser].accNumber = makeAccount;
 		um.userList[identifier].accCnt++;
 		System.out.println("[메세지]'" + makeAccount + "'계좌가 생성되었습니다.\n");
@@ -67,9 +62,9 @@ public class AccountManager {
 			accCntByUser = 0;
 			return;
 		}
-		
+
 		// 삭제하고자 하는 인덱스 찾기
-		//while 구문으로 하지않는이유 : 무한반복 굴레에서 빠질수 있음
+		// while 구문으로 하지않는이유 : 무한반복 굴레에서 빠질수 있음
 		int delIdx = -1;
 		for (int i = 0; i < accCntByUser; i++) {
 			if (um.userList[identifier].acc[i].accNumber.equals(myAccount)) {
@@ -81,8 +76,8 @@ public class AccountManager {
 			System.out.println("[메시지] 계좌번호를 재확인하세요.");
 			return;
 		} else {
-			System.out.println("[메시지]\n" + myAccount + "계좌정보가 삭제되었습니다.");
-			
+			System.out.println("[메시지]\n[" + myAccount + "] 계좌정보가 삭제되었습니다.");
+
 			Account[] tempAccount = um.userList[identifier].acc;
 			um.userList[identifier].acc = new Account[accCntByUser - 1];
 
@@ -98,15 +93,17 @@ public class AccountManager {
 		}
 
 	}
-    
+
 	void printAcc(int identifier) {
-		User temp = um.userList[identifier];// userList[] 특정 요소를 temp 배열에 저장
-		System.out.println("\n=========================");
+
+		User temp = um.userList[identifier];
+		System.out.println("====================");
 		System.out.println("ID : " + temp.id);
-		System.out.println("=========================");
+		System.out.println("====================");
 		for (int i = 0; i < temp.accCnt; i++) {
-			System.out.println("accNumber:" + temp.acc[i].accNumber + " /  money: " + temp.acc[i].money);
+			System.out.println("accNumber:" + temp.acc[i].accNumber + " / money: " + temp.acc[i].money);
 		}
-		System.out.println("=========================\n");
+		System.out.println("=============================\n");
+
 	}
 }

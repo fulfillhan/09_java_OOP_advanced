@@ -1,9 +1,9 @@
 package step9_01.atm_v1;
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class ATM {
-	
 	Scanner scan = new Scanner(System.in);
 	Random ran   = new Random();
 	UserManager userManager = new UserManager();

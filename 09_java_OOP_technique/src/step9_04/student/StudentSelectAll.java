@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class StudentSelectAll {
 	
-	private StudentDAO studentDAO;
+	private StudentDAO studentDAO; // StudentDAO 객체 사용하여 해당 클래스에서 사용
 	
 	public StudentSelectAll(StudentDAO studentDAO) {
 		this.studentDAO = studentDAO;

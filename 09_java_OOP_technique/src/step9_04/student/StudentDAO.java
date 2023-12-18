@@ -16,7 +16,7 @@ public class StudentDAO { // 데이터 저장소에 접근하여 학생 정보�
         return StudentRepository.getStDB().get(id);
     }
     public Map<String,StudentVO> getStudentDB(){
-     // 전체 학생 정보를 저장하는 HashMap 자체를 반환
+     // 전체 학생 정보의 얻어내는 HashMap 자체를 반환
      return StudentRepository.getStDB();
     }
 }
