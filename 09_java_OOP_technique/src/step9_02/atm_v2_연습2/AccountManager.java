@@ -61,6 +61,16 @@ public class AccountManager {
     }
     //계좌 삭제 -> 업데이트 필요
     void remove(int identifier){
+    	
+    	System.out.print("삭제할 계좌 번호를 입력하세요 : ");
+    	String myAccount = scan.next();
+    	
+    	int accCntByUser = um.user[identifier].accCnt;
+    	
+    	
+    	
+    	
+    	
 
     }
 
