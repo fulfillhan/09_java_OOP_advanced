@@ -34,7 +34,7 @@ public class ATM {
 	}
 	
 	void join() {
-		UserManager.getInstance().joinMember();
+		um.joinMember();
 	}
 	
 	void login() {

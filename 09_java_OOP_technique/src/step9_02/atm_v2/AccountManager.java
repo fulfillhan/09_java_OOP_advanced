@@ -1,5 +1,6 @@
 package step9_02.atm_v2;
 
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -43,7 +44,8 @@ public class AccountManager {
 		System.out.println("[메세지]'" + makeAccount + "'계좌가 생성되었습니다.\n");
 
 	}
-
+	//여기에서 문제점 :  마지막남은 계좌번호를 삭제시 기존에 삭제되었던 번호 입력하게 되면
+	// 이미 삭제되었다고 출력되어야 하나, 마지막 남은 번호가 삭제됨.
 	void removeAcc(int identifier) {
 
 		System.out.print("삭제할 계좌번호를 입력하세요 : ");
@@ -58,16 +60,14 @@ public class AccountManager {
 		if (accCntByUser == 1) {
 			System.out.println("[메시지] 계좌번호 : " + um.userList[identifier].acc[0].accNumber + "계좌정보가 삭제되었습니다.");
 			System.out.println("계좌 정보가 모두 삭제되었습니다.");
-			um.userList[identifier].acc = null;
+			um.userList[identifier].acc = null;//-> 여기가 잘못되엇나..?
 			accCntByUser = 0;
 			return;
 		}
-
-		// 삭제하고자 하는 인덱스 찾기
-		// while 구문으로 하지않는이유 : 무한반복 굴레에서 빠질수 있음
+		
 		int delIdx = -1;
 		for (int i = 0; i < accCntByUser; i++) {
-			if (um.userList[identifier].acc[i].accNumber.equals(myAccount)) {
+			if (myAccount.equals(um.userList[identifier].acc[i].accNumber)) {
 				delIdx = i;
 				break;
 			}
