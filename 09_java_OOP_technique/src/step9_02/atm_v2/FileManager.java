@@ -1,15 +1,8 @@
 package step9_02.atm_v2;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Iterator;
+import java.io.*;
 
 public class FileManager {
-	
 	private FileManager() {}
 	private static FileManager instance = new FileManager();
 	public static FileManager getInstance() {
@@ -140,7 +133,7 @@ public class FileManager {
 				}
 			}
 			else {
-				um.setDummy();
+				//um.setDummy();
 				setData();
 				save();
 			}
@@ -152,4 +145,5 @@ public class FileManager {
 			if (fr != null) {try {fr.close();} catch (IOException e) {}}
 		}
 	}
+
 }

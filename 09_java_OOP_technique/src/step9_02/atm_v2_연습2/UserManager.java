@@ -26,6 +26,18 @@ public class UserManager {
         }
         return isDuple;
     }
+
+    boolean getCheckAcc(String AccountNum){
+        boolean isDuple = false;
+        for (int i = 0; i < userCnt; i++) {
+            for (int j = 0; j < user[i].accCnt; j++) {
+                if (AccountNum.equals(user[i].acc[j].accNumber)){
+                    isDuple = true;
+                }
+            }
+        }
+        return isDuple;
+    }
     void joinMember(){
 
         System.out.print("[회원가입] 이이디를 입력하세요 : ");
@@ -34,7 +46,7 @@ public class UserManager {
         String myPw = scanner.next();
 
         //아이디 중복확인(참, 거짓 조건으로)
-        boolean checkId = checkId(myId);
+        boolean checkId = getCheckAcc(myId);
 
         if (checkId){ //true 이면 -> 중복된다는것
             System.out.println("[메시지] 아이디가 중복됩니다.\n");

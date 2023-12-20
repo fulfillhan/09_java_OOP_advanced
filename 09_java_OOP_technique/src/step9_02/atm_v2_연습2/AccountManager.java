@@ -20,6 +20,7 @@ public class AccountManager {
     UserManager um = UserManager.getInstance();
 
     // 계좌 생성하기
+    //-> 오류 발생 : 계좌번호가 다 삭제된후 다시 생성할시 ' java.lang.NullPointerException ' 발생.
     void createAcc(int identifier) {
         int accCntByUser = um.user[identifier].accCnt;// 유저당 가지고있는 계좌의 수
 
@@ -30,12 +31,12 @@ public class AccountManager {
 
         String makeAccount = "";
         while (true) {
-            makeAccount = ran.nextInt(90001) + 10000 + "";
+            makeAccount =Integer.toString(ran.nextInt(90001)+10000);
             // 계좌 중복여부 확인 필요
-            if (um.checkId(makeAccount)) {
+            if (um.getCheckAcc(makeAccount)) {
                 System.out.println("[메시지] 계좌 번호가 중복됩니다. 재확인 필요!!\n");
                 continue;
-            } else if (!um.checkId(makeAccount)) {
+            } else if (!um.getCheckAcc(makeAccount)) {
                 break;
             }
 
@@ -59,18 +60,44 @@ public class AccountManager {
         }
 
     }
-    //계좌 삭제 -> 업데이트 필요
+    //계좌 삭제
     void remove(int identifier){
-    	
-    	System.out.print("삭제할 계좌 번호를 입력하세요 : ");
-    	String myAccount = scan.next();
-    	
-    	int accCntByUser = um.user[identifier].accCnt;
-    	
-    	
-    	
-    	
-    	
+        System.out.print("삭제할 계좌번호를 입력하세요 : ");
+        String deleteAcc = scan.next();
+
+        int accCntByUser = um.user[identifier].accCnt;
+
+        if (um.getCheckAcc(deleteAcc)){
+            System.out.println("[메시지] 계좌 번호를 재확인 해주세요.");
+            return;
+        }
+
+        if (accCntByUser == 0){
+            System.out.println("[메시지] 더이상 삭제할 계좌가 없습니다.\n");
+            return;
+        }
+
+        if (accCntByUser == 1){
+
+            System.out.println("[메시지] 계좌번호 : "+deleteAcc+"가 삭제되었습니다.");
+            accCntByUser = 0;
+            um.user[identifier].acc[0] = null;
+
+        } else if (accCntByUser > 1) {
+            System.out.println("[메시지] 계좌번호 : "+ deleteAcc+"가 삭제되었습니다.");
+
+            Account[] temp = um.user[identifier].acc;
+            um.user[identifier].acc = new Account[accCntByUser-1];
+// 여기서부터 다시하기
+//            int j = 0
+//            for (int i = 0; i < accCntByUser ; i++) {
+//                if(um.getCheckAcc())
+//            }
+
+
+
+        }
+
 
     }
 
