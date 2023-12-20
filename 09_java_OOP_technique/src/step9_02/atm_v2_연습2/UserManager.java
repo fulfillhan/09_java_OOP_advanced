@@ -38,6 +38,7 @@ public class UserManager {
         }
         return isDuple;
     }
+    
     void joinMember(){
 
         System.out.print("[회원가입] 이이디를 입력하세요 : ");

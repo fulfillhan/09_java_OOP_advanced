@@ -20,7 +20,8 @@ public class AccountManager {
     UserManager um = UserManager.getInstance();
 
     // 계좌 생성하기
-    //-> 오류 발생 : 계좌번호가 다 삭제된후 다시 생성할시 ' java.lang.NullPointerException ' 발생.
+   
+    
     void createAcc(int identifier) {
         int accCntByUser = um.user[identifier].accCnt;// 유저당 가지고있는 계좌의 수
 
@@ -61,6 +62,7 @@ public class AccountManager {
 
     }
     //계좌 삭제
+    //-> 오류 발생 : 계좌번호가 다 삭제된후 다시 생성할시 ' java.lang.NullPointerException ' 발생.
     void remove(int identifier){
         System.out.print("삭제할 계좌번호를 입력하세요 : ");
         String deleteAcc = scan.next();
@@ -83,16 +85,21 @@ public class AccountManager {
             accCntByUser = 0;
             um.user[identifier].acc[0] = null;
 
-        } else if (accCntByUser > 1) {
+        } else if (1 < accCntByUser && accCntByUser <= 3) {
             System.out.println("[메시지] 계좌번호 : "+ deleteAcc+"가 삭제되었습니다.");
 
             Account[] temp = um.user[identifier].acc;
             um.user[identifier].acc = new Account[accCntByUser-1];
-// 여기서부터 다시하기
-//            int j = 0
-//            for (int i = 0; i < accCntByUser ; i++) {
-//                if(um.getCheckAcc())
-//            }
+           // 여기서부터 다시하기
+            int j = 0;
+            for (int i = 0; i < accCntByUser ; i++) {
+            	if (um.getCheckAcc(deleteAcc)) { // 삭제할 계좌번호 중복 여부
+            		um.user[identifier].acc[j] = temp[i];//중복이 아니면 기존배열 temp에서 복사하기
+            	}
+            	
+            	um.user[identifier].acc[accCntByUser] = new Account();
+               
+          }
 
 
 
