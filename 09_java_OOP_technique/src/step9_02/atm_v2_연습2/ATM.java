@@ -73,8 +73,7 @@ public class ATM {
 			} else if (menu == 3) {
 				am.printAcc(identifier);
 			} else if (menu == 4) {
-				//-> 여기서부터 수정필요
-
+				//um.deleteUser();
 			} else if (menu == 0) {
 				break;
 			}

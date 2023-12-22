@@ -27,7 +27,7 @@ public class UserManager {
         return isDuple;
     }
 
-    boolean getCheckAcc(String accountNum){ //-> 오류 발생
+    boolean getCheckAcc(String accountNum){ 
         boolean isDuple = false;
         for (int i = 0; i < userCnt; i++) {
             for (int j = 0; j < user[i].accCnt; j++) {
@@ -76,7 +76,7 @@ public class UserManager {
 
     }
 
-    int logUser(){ //-> 여기서부터 다시하기!!
+    int logUser(){ 
         //로그인가능한 유저인지 검사 메서드
         int identifier = -1;
 
@@ -94,6 +94,9 @@ public class UserManager {
         return identifier;
 
     }
+//    int deleteUser() {
+//    	return
+//    }
 
 
 }
