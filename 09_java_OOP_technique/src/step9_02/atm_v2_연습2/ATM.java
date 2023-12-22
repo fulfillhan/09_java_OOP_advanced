@@ -14,8 +14,8 @@ public class ATM {
 		while (true) {
 			
 			System.out.println("[ATM]");
-			System.out.println("[1.회원가입]/n[2.로그인]/n[0.종료]");
-			System.out.println("메뉴 선택 : ");
+			System.out.println("[1.회원가입] [2.로그인] [0.종료]");
+			System.out.print("메뉴 선택 : ");
 			int sel = scan.nextInt();
 			
 			if(sel == 1) {
@@ -60,7 +60,7 @@ public class ATM {
 		//[메세지]'8426443'계좌가 생성되었습니다.
 
 		while(true){
-		System.out.println("["+um.user[identifier]+"] 님, 환영합니다.");
+		System.out.println("["+um.user[identifier].id+"] 님, 환영합니다.");
 			System.out.println("[1.계좌생성]\n[2.계좌삭제]\n[3.조    회]\n[4.회원탈퇴]\n[0.로그아웃]");
 			System.out.print("메뉴 선택 : ");
 			int menu = scan.nextInt();
@@ -69,11 +69,11 @@ public class ATM {
 				am.createAcc(identifier);
 				//파일 저장
 			} else if (menu == 2) {
-
-
+				am.removeAcc(identifier);
 			} else if (menu == 3) {
-
+				am.printAcc(identifier);
 			} else if (menu == 4) {
+				//-> 여기서부터 수정필요
 
 			} else if (menu == 0) {
 				break;

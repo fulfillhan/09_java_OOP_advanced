@@ -6,7 +6,7 @@ public class UserManager {
     Scanner scanner = new Scanner(System.in);
 
     private UserManager (){} // 외부에서 직접 인스턴스 생성방지 = private
-    private static UserManager instance;//인스턴스를 저장할 정적 변수
+    private static UserManager instance = new UserManager();//인스턴스를 저장할 정적 변수
     public static UserManager getInstance(){
         return instance;
     }
@@ -27,18 +27,17 @@ public class UserManager {
         return isDuple;
     }
 
-    boolean getCheckAcc(String AccountNum){
+    boolean getCheckAcc(String accountNum){ //-> 오류 발생
         boolean isDuple = false;
         for (int i = 0; i < userCnt; i++) {
             for (int j = 0; j < user[i].accCnt; j++) {
-                if (AccountNum.equals(user[i].acc[j].accNumber)){
+                if (accountNum.equals(user[i].acc[j].accNumber)){
                     isDuple = true;
                 }
             }
         }
         return isDuple;
     }
-    
     void joinMember(){
 
         System.out.print("[회원가입] 이이디를 입력하세요 : ");
@@ -47,7 +46,7 @@ public class UserManager {
         String myPw = scanner.next();
 
         //아이디 중복확인(참, 거짓 조건으로)
-        boolean checkId = getCheckAcc(myId);
+        boolean checkId = checkId(myId);
 
         if (checkId){ //true 이면 -> 중복된다는것
             System.out.println("[메시지] 아이디가 중복됩니다.\n");
@@ -60,17 +59,18 @@ public class UserManager {
         else {
             User[] temp = user;
             user = new User[userCnt+ 1];
+            user[userCnt] = new User();
+
             for (int i = 0; i < userCnt; i++) {
                 user[i] = temp[i];
             }
             temp = null;
         }
-            user[userCnt] = new User();
             user[userCnt].id = myId;
             user[userCnt].pw = myPw;
 
+        System.out.println("[메시지] "+ user[userCnt].id + "님 회원가입을 축하드립니다.\n");
         userCnt++;
-        System.out.println("[메시지] "+ user[userCnt].id+ "님 회원가입을 축하드립니다.\n");
 
         //파일 저장하기
 

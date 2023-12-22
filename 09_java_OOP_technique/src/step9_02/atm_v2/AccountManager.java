@@ -1,5 +1,5 @@
 package step9_02.atm_v2;
-
+// 2023-12-22 계좌삭제 부분 삭제되서 다시 업데이트 필요!!
 import java.util.Random;
 import java.util.Scanner;
 
