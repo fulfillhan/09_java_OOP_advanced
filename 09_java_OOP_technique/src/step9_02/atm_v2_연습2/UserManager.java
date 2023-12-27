@@ -2,6 +2,8 @@ package step9_02.atm_v2_연습2;
 
 import java.util.Scanner;
 
+import javax.xml.transform.Templates;
+
 public class UserManager {
     Scanner scanner = new Scanner(System.in);
 
@@ -94,9 +96,30 @@ public class UserManager {
         return identifier;
 
     }
-//    int deleteUser() {
-//    	return
-//    }
+    int deleteUser(int identifier) {
+    	
+    	if (identifier == -1) {
+			System.out.println("[메시지] 로그인 후 이용하세요!\n");
+		}
+    	else {// 로그인이 된 상태라면
+    		
+			User[] temp = user;
+			user = new User[userCnt - 1];
+			
+			int j = 0;
+			for (int i = 0; i < userCnt; i++) {// 삭제하려는 위치가 해당 배열에 없어야함
+				if(i != identifier) {
+				user[j] = temp[i];
+				j++;
+				}
+			}
+    		temp=null;
+    		userCnt--;
+		}
+    	System.out.println("[메시지] 탈퇴되었습니다!\n");
+    	identifier = -1;
+    	return identifier;
+    }
 
 
 }

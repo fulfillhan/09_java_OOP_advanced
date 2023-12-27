@@ -126,6 +126,7 @@ public class UserManager {
 		for (int i = 0; i < userCnt; i++) {
 			if (i != identifier) {
 				userList[j++] = tmp[i];
+				j++;
 			}
 		}
 		
