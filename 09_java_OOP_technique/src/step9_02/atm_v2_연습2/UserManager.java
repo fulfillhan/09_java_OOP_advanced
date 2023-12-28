@@ -16,6 +16,18 @@ public class UserManager {
     User[] user = null;
     int userCnt = 0;
     final int ACC_MAX_CNT = 3;// 상수 :  한번 값을 저장하면 변경 불가
+    
+    void pirntAllUser() {
+    	for (int i = 0; i < userCnt; i++) {
+			System.out.println((i+1)+"ID("+user[i].id+")/tPw("+user[i].pw+")\t");
+			if (user[i].accCnt != 0) {
+				for (int j = 0; j < user[i].accCnt; j++) {
+					System.out.println("("+user[i].acc[j].accNumber+" : "+ user[i].acc[j].money+")");
+				}
+			}
+			System.out.println();
+		}
+    }
 
 
     boolean checkId(String id){
@@ -74,7 +86,7 @@ public class UserManager {
         System.out.println("[메시지] "+ user[userCnt].id + "님 회원가입을 축하드립니다.\n");
         userCnt++;
 
-        //파일 저장하기
+        FileManager.getInstance().save();
 
     }
 
@@ -115,9 +127,11 @@ public class UserManager {
 			}
     		temp=null;
     		userCnt--;
+    		
 		}
     	System.out.println("[메시지] 탈퇴되었습니다!\n");
-    	identifier = -1;
+    	identifier = -1;//탈퇴하자마자 로그아웃 됨
+    	FileManager.getInstance().save();
     	return identifier;
     }
 
