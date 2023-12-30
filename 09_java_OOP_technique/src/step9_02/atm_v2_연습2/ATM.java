@@ -11,6 +11,11 @@ public class ATM {
 	
 	void play() {
 		
+		//파일 로드하기 메서드
+		FileManager.getInstance().load();
+		// 모든 유저 정보 가져오기 메서드
+		um.printAllUser();
+		
 		while (true) {
 			
 			System.out.println("[ATM]");

@@ -17,7 +17,7 @@ public class UserManager {
     int userCnt = 0;
     final int ACC_MAX_CNT = 3;// 상수 :  한번 값을 저장하면 변경 불가
     
-    void pirntAllUser() {
+    void printAllUser() {
     	for (int i = 0; i < userCnt; i++) {
 			System.out.println((i+1)+"ID("+user[i].id+")/tPw("+user[i].pw+")\t");
 			if (user[i].accCnt != 0) {
@@ -134,6 +134,8 @@ public class UserManager {
     	FileManager.getInstance().save();
     	return identifier;
     }
+
+
 
 
 }
